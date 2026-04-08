@@ -40,12 +40,48 @@
                     </label>
                 </div>
                 <!-- Add new notes button -->
+                <!-- button that open modal -->
                 <div class="ml-auto">
-                    <button class="btn pr-btn">
+                    <button class="btn pr-btn" onclick="my_modal_3.showModal()">
                         <i class="fa-solid fa-plus"></i>
-                        <a href="">Add note</a>
+                        Add note
                     </button>
                 </div>
+                <!-- Modal to add a note -->
+                <dialog id="my_modal_3" class="modal">
+                    <div class="modal-box">
+                        <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+                        <h3 class="text-lg font-bold">Add new note</h3>
+                        <div>
+                            <form method="POST" action="{{ route('notes.store') }}" class="fieldset w-full mt-4">
+                                @csrf
+                                <label class="label font-semibold">Title</label>
+                                <input type="text" class="input w-full" name="title" value="{{ old('title') }}" placeholder="Note title" />
+                                <x-error field="title" />
+
+                                <label class="label font-semibold">Description</label>
+                                <textarea class="textarea w-full" name="description" placeholder="Note description">{{ old('description') }}</textarea>
+                                <x-error field="description" />
+
+                                    
+                                <label class="label font-semibold">Category</label>
+                                <select class="select w-full" name="category">
+                                    <option disabled selected>Select category</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="work">Work</option>
+                                    <option value="idea">Idea</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <x-error field="category" />
+
+                                <button class="btn pr-btn mt-4">Add note</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
             </nav>
             <!-- Page content here -->
             <div class="p-4">

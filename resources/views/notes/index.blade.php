@@ -5,6 +5,8 @@
     @isset($test)
         {{ $test }}
     @endisset
-    <h1 class="text-2xl font-bold mb-4">All Notes</h1>
-    <p>Here you can find all your notes.</p>
+    @foreach ($notes as $note)
+        <h1 class="text-2xl font-bold mb-4">{{ $note->title }}</h1>
+        <p>{{ $note->description }}</p>
+    @endforeach
 @endsection

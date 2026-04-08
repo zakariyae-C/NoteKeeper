@@ -15,5 +15,6 @@ Route::middleware('guest')->group(function(){
 
 Route::middleware('auth')->group(function(){
     Route::get('/notes', [NotesController::class, 'index'])->name('notes.index');
+    Route::post('/notes', [NotesController::class, 'store'])->name('notes.store');
     Route::delete('/logout', [SessionController::class, 'destroy'])->name('logout');
 });

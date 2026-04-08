@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Note;
+use Illuminate\Support\Facades\Auth;
 
 class NotesController extends Controller
 {
@@ -10,13 +12,25 @@ class NotesController extends Controller
     {
         $category = $request->query('category');
 
-        if ($category == 'personal') {
-            return view('notes.index', ["test" => $category]);
-        } elseif ($category == 'work') {
-            return view('notes.index', ["test" => $category]);
-        } elseif ($category == 'idea') {
-            return view('notes.index', ["test" => $category]);
-        }
-        return view('notes.index');
+        $notes = Note::all();
+        return view('notes.index', ['notes' => $notes]);
+    }
+
+    public function store(Request $request){
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'category' => 'required',
+        ]);
+
+        Note::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'category' => $request->category,
+            'user_id' => Auth::id(),
+        ]);
+
+        return to_route('notes.index');
+        
     }
 }
