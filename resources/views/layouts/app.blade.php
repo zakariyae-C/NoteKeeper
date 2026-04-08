@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title')</title>
+    @vite(['resources/css/app.css'])
+    <! -- Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="drawer md:drawer-open">
+        <input id="sidebar-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content custom-drawer-content flex flex-col">
+            <!-- Navbar -->
+            <nav class="navbar w-full bg-base-300">
+                <!-- Mobile sidebar toggle button -->
+                <div class="flex-none md:hidden icon-toggle">
+                    <label for="sidebar-drawer" class="btn btn-square btn-ghost">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" class="my-1.5 inline-block size-4"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2-2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
+                    </label>
+                </div>
+                <!-- Search input -->
+                <div class="px-4">
+                    <label class="input">
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                            stroke-width="2.5"
+                            fill="none"
+                            stroke="currentColor"
+                            >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+                        <input type="search" required placeholder="Search" />
+                    </label>
+                </div>
+                <!-- Add new notes button -->
+                <div class="ml-auto">
+                    <button class="btn pr-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        <a href="">Add note</a>
+                    </button>
+                </div>
+            </nav>
+            <!-- Page content here -->
+            <div class="p-4">
+                @yield('content')
+            </div>
+        </div>
+        <div class="drawer-side custom-drawer-side">
+            <label for="sidebar-drawer" class="drawer-overlay"></label>
+            <div class="min-h-screen w-64 flex flex-col items-start bg-base-200">
+                <div class="p-6">
+                    <span class="block text-2xl font-bold">NoteKeeper</span>
+                    My notes, all in one place.
+                </div>
+                <ul class="menu w-full p-4 flex flex-col flex-1">
+                    <!-- List item -->
+                    <li class="{{ request()->routeIs('notes.index') && !request()->query('category') ? 'active' : '' }}">
+                        <a href="{{ route('notes.index') }}" class="p-3">
+                            <i class="fa-solid fa-desktop"></i>
+                            <span class="ms-1">All notes</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->query('category') === 'personal' ? 'active' : ''}}">
+                        <a href="{{ route('notes.index', ['category' => 'personal']) }}" class="p-3">
+                            <i class="fa-regular fa-address-book"></i>
+                            <span class="ms-1">Personal</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->query('category') === 'work' ? 'active' : ''}}">
+                        <a href="{{ route('notes.index', ['category' => 'work']) }}" class="p-3">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <span class="ms-1">Work</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->query('category') === 'idea' ? 'active' : ''}}">
+                        <a href="{{ route('notes.index', ['category' => 'idea']) }}" class="p-3">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <span class="ms-1">Idea</span>
+                        </a>
+                    </li>
+                    <li class="mt-auto">
+                        <form method="POST" action="{{route('logout')}}" class="p-3">
+                            @csrf
+                            @method('DELETE')
+                            <button class="w-full">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span class="ms-1">Logout</span>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
