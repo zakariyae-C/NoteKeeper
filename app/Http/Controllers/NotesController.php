@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class NotesController extends Controller
 {
+    // Display all notes
     public function index(Request $request)
     {
         $category = $request->query('category');
@@ -16,6 +17,7 @@ class NotesController extends Controller
         return view('notes.index', ['notes' => $notes]);
     }
 
+    // Store new note
     public function store(Request $request){
         $request->validate([
             'title' => 'required|max:255',
@@ -32,5 +34,16 @@ class NotesController extends Controller
 
         return to_route('notes.index');
         
+    }
+
+    // Dsiplay one note info
+    public function show(Note $note){
+        return view('notes.show', ['note' => $note]);
+    }
+
+    // Delete notes
+    public function destroy(Note $note){
+        $note->delete();
+        return to_route('notes.index');
     }
 }

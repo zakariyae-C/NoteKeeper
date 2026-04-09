@@ -84,7 +84,7 @@
                 </dialog>
             </nav>
             <!-- Page content here -->
-            <div class="p-4">
+            <div class="@yield('content-class', 'p-4')">
                 @yield('content')
             </div>
         </div>
@@ -117,7 +117,7 @@
                     </li>
                     <li class="{{ request()->query('category') === 'idea' ? 'active' : ''}}">
                         <a href="{{ route('notes.index', ['category' => 'idea']) }}" class="p-3">
-                            <i class="fa-solid fa-briefcase"></i>
+                            <i class="fa-regular fa-lightbulb"></i>
                             <span class="ms-1">Idea</span>
                         </a>
                     </li>

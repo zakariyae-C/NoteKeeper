@@ -41,6 +41,29 @@ body{
 .active{
     background-color: #582287f2;
 }
+.personal{
+    background-color: var(--pr-light-color);
+    color: var(--primary-color);
+}
+.work{
+    background-color: oklch(0.65 0.24 354.31 / 0.13);
+    color: oklch(65% 0.241 354.308);
+}
+.idea{
+    background-color: oklch(0.65 0.22 41.12 / 0.12);
+    color: oklch(64.6% 0.222 41.116);
+}
+.back-btn{
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 5px;
+    color: var(--primary-color);
+    transition: all 300ms ease-in;
+}
+.back-btn:hover{
+    background-color: var(--primary-color);
+    color: white;
+}
 /* End Components */
 
 /* Start Login & Register Style */
@@ -77,3 +100,29 @@ body{
     position: relative;
 }
 /* End side-nav style */
+
+/* Style cards style */
+.custom-cards .note-category{
+    /* color: white; */
+    padding: 0px 8px;
+    border-radius: 10px;
+}
+.custom-cards p{
+    height: 64px;
+    max-height: 100%;
+}
+.custom-cards .action-icons a,
+.custom-cards .action-icons button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    color: white;
+    border-radius: 5px;
+}
+.custom-cards .action-icons a:first-of-type{
+    background-color: var(--secondary-color);
+}
+
+/* End cards style */
