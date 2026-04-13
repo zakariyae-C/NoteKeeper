@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class NotesController extends Controller
@@ -12,8 +13,12 @@ class NotesController extends Controller
     public function index(Request $request)
     {
         $category = $request->query('category');
+        $query = Note::where('user_id', Auth::id());
+        if ($category != null) {
+            $query->where('category', $category);
+        }
+        $notes = $query->get();
 
-        $notes = Note::all();
         return view('notes.index', ['notes' => $notes]);
     }
 
