@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -6,30 +6,34 @@
 @source '../**/*.js';
 
 @plugin "daisyui" {
-    themes: light --default, dark --prefersdark;
+    themes:
+        light --default,
+        dark --prefersdark;
 }
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 }
 /* Start Global Style */
-:root{
-    --primary-color : #6C27A8;
-    --pr-light-color : #E0DFFF;
-    --secondary-color : #5757EA;
-    --sc-light-color : #8D8FFF;
+:root {
+    --primary-color: #6c27a8;
+    --pr-light-color: #e0dfff;
+    --secondary-color: #5757ea;
+    --sc-light-color: #8d8fff;
 }
-body{
-    font-family: 'roboto';
+body {
+    font-family: "roboto";
 }
 /* End Global Style */
 /* Start Components */
-.pr-btn{
+.pr-btn {
     background-color: var(--primary-color);
     color: white;
 }
-.active::before{
+.active::before {
     content: "";
     position: absolute;
     width: 2px;
@@ -38,84 +42,84 @@ body{
     top: 0;
     right: 0;
 }
-.active{
+.active {
     background-color: #582287f2;
 }
-.personal{
+.personal {
     background-color: var(--pr-light-color);
     color: var(--primary-color);
 }
-.work{
+.work {
     background-color: oklch(0.65 0.24 354.31 / 0.13);
     color: oklch(65% 0.241 354.308);
 }
-.idea{
+.idea {
     background-color: oklch(0.65 0.22 41.12 / 0.12);
     color: oklch(64.6% 0.222 41.116);
 }
-.back-btn{
+.back-btn {
     border: 1px solid var(--primary-color);
     border-radius: 5px;
     padding: 5px;
     color: var(--primary-color);
     transition: all 300ms ease-in;
 }
-.back-btn:hover{
+.back-btn:hover {
     background-color: var(--primary-color);
     color: white;
 }
 /* End Components */
 
 /* Start Login & Register Style */
-.login-register-page .card-img{
+.login-register-page .card-img {
     background-color: var(--pr-light-color);
 }
 
-.login-register-page legend{
+.login-register-page legend {
     color: var(--secondary-color);
 }
-.login-register-page span a{
+.login-register-page span a {
     color: var(--secondary-color);
 }
 /* End Login & Register Style */
 
 /* Start side-nav style */
-.custom-drawer-content nav{
+.custom-drawer-content nav {
     background-color: var(--pr-light-color);
 }
-.custom-drawer-content .icon-toggle label{
+.custom-drawer-content .icon-toggle label {
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
     transition: all 300ms ease-in;
 }
-.custom-drawer-content .icon-toggle label:hover{
+.custom-drawer-content .icon-toggle label:hover {
     background-color: var(--primary-color);
     color: white;
 }
-.custom-drawer-side > div{
+.custom-drawer-side > div {
     background-color: var(--primary-color);
     color: white;
 }
-.custom-drawer-side ul li{
+.custom-drawer-side ul li {
     position: relative;
 }
 /* End side-nav style */
 
 /* Style cards style */
-.custom-cards .note-category{
+.custom-cards .note-category {
     /* color: white; */
     padding: 0px 8px;
     border-radius: 10px;
 }
-.custom-cards{
+.custom-cards {
     min-height: 200px;
 }
-.custom-cards p{
+.custom-cards p {
     height: 64px;
     max-height: 100%;
 }
 .custom-cards .action-icons a,
-.custom-cards .action-icons button{
+.custom-cards .action-icons button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,7 +128,7 @@ body{
     color: white;
     border-radius: 5px;
 }
-.custom-cards .action-icons > button{
+.custom-cards .action-icons > button {
     background-color: var(--secondary-color);
 }
 

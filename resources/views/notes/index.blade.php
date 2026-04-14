@@ -4,6 +4,7 @@
 
 @section('content-class', 'p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4')
 @section('content')
+    
     @foreach ($notes as $note)
         <div class="card card-dash hover:scale-105 transition delay-150 duration-300 ease-in-out custom-cards bg-base-300">
             <div class="card-body">

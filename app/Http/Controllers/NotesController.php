@@ -37,7 +37,7 @@ class NotesController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return to_route('notes.index');
+        return to_route('notes.index')->with('success', 'Note has been created successuly.');
         
     }
 
@@ -64,13 +64,13 @@ class NotesController extends Controller
             'category' => $request->category,
         ]);
 
-        return to_route('notes.index');
+        return to_route('notes.index')->with('success', 'Note has been updated successuly.');
     }
 
     // Delete notes
     public function destroy(Note $note){
         Gate::authorize('delete', $note);
         $note->delete();
-        return to_route('notes.index');
+        return to_route('notes.index')->with('success', 'Note has been deleted successuly.');
     }
 }

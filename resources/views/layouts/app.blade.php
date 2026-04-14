@@ -89,6 +89,10 @@
                         </div>
                     </dialog>
                 </nav>
+                <!-- Success message alert -->
+                <div class="p-4">
+                    <x-success />
+                </div>
                 <!-- Page content here -->
                 <div class="@yield('content-class', 'p-4')">
                     @yield('content')

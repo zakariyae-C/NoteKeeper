@@ -35,3 +35,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+// Fade success alerts after number of seconds
+const successMsg = document.getElementById("success-msg");
+
+if (successMsg != null) {
+    setTimeout(function () {
+        // add tailewind opacity class to 0
+        successMsg.classList.add("opacity-0");
+
+        // remove alert from DOM
+        setTimeout(() => successMsg.remove(), 1000);
+    }, 1000);
+}
