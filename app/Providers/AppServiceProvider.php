@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use App\Models\User;
+use Illuminate\Auth\Access\Response;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('update_user', function(User $authUser, User $targetUser) : bool|Response
+        {
+            return $authUser->id ===  $targetUser->id
+                    ? Response::allow()
+                    : Response::denyAsNotFound();
+        });
     }
 }

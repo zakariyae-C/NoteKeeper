@@ -107,6 +107,9 @@ body{
     padding: 0px 8px;
     border-radius: 10px;
 }
+.custom-cards{
+    min-height: 200px;
+}
 .custom-cards p{
     height: 64px;
     max-height: 100%;
@@ -121,7 +124,7 @@ body{
     color: white;
     border-radius: 5px;
 }
-.custom-cards .action-icons a:first-of-type{
+.custom-cards .action-icons > button{
     background-color: var(--secondary-color);
 }
 

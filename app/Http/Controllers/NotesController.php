@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Note;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class NotesController extends Controller
 {
@@ -43,11 +43,33 @@ class NotesController extends Controller
 
     // Dsiplay one note info
     public function show(Note $note){
+        // Policy to prevent users entering notes that not belongs to them
+        Gate::authorize('view', $note);
         return view('notes.show', ['note' => $note]);
+    }
+
+    // Edit notes
+    public function update(Request $request, Note $note){
+        Gate::authorize('update', $note);
+
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'category' => 'required',
+        ]);
+
+        $note->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'category' => $request->category,
+        ]);
+
+        return to_route('notes.index');
     }
 
     // Delete notes
     public function destroy(Note $note){
+        Gate::authorize('delete', $note);
         $note->delete();
         return to_route('notes.index');
     }
