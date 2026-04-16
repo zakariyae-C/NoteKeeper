@@ -22,6 +22,12 @@ Route::middleware('auth')->group(function(){
     Route::put('/notes/{note}', [NotesController::class, 'update'])->name('notes.update');
     Route::delete('/notes/{note}', [NotesController::class, 'destroy'])->name('notes.destroy');
 
+    // Notification mark as read
+    Route::put('/notification/read', function(){
+        auth()->user()->unreadNotifications->markAsRead();
+        return back();
+    })->name('notification.read');
+
     // profile pages and actions
     Route::get('profile/{user}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile/{user}', [ProfileController::class, 'update'])->name('profile.update');

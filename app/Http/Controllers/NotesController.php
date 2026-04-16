@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Note;
+use App\Notifications\NoteCreateNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -30,12 +31,15 @@ class NotesController extends Controller
             'category' => 'required',
         ]);
 
-        Note::create([
+        $note = Note::create([
             'title' => $request->title,
             'description' => $request->description,
             'category' => $request->category,
             'user_id' => Auth::id(),
         ]);
+
+        Auth::user()->notify(new NoteCreateNotification($note));
+        // auth()->user()->notify(new NoteCreateNotification($note));
 
         return to_route('notes.index')->with('success', 'Note has been created successuly.');
         

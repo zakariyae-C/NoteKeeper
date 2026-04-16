@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendWelcomeEmail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,8 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        
+        SendWelcomeEmail::dispatch($user);
         Auth::login($user);
 
         return to_route('notes.index');
