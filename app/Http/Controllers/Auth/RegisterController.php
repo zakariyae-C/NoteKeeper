@@ -26,7 +26,8 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        
+
+        // dispatch(send) the job to the queue
         SendWelcomeEmail::dispatch($user);
         Auth::login($user);
 

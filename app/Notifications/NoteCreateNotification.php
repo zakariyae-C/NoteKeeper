@@ -17,7 +17,7 @@ class NoteCreateNotification extends Notification implements ShouldQueue
      */
     public function __construct(public Note $note)
     {
-        //
+        // 
     }
 
     /**
