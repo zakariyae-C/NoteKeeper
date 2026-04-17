@@ -34,3 +34,12 @@ Route::middleware('auth')->group(function(){
 
     Route::delete('/logout', [SessionController::class, 'destroy'])->name('logout');
 });
+
+Route::get('/debug-db', function () {
+    return [
+        'connection' => config('db.default'),
+        'host'       => config('database.connections.mysql.host'),
+        'database'   => config('database.connections.mysql.database'),
+        'username'   => config('database.connections.mysql.username'),
+    ];
+});
