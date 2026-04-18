@@ -1,5 +1,8 @@
 import "./bootstrap";
 
+// Let vite generate all images inside resources/images/
+import.meta.glob(['../images/**']);
+
 // Edit Note Modal Logic (DaisyUI)
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".edit-note-btn").forEach(function (btn) {
