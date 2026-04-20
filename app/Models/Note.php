@@ -14,10 +14,10 @@ class Note extends Model
         'title',
         'description',
         'category',
-        'user_id'
+        'user_id',
     ];
 
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

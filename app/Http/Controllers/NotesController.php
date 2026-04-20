@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Notifications\NoteCreateNotification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -24,7 +24,8 @@ class NotesController extends Controller
     }
 
     // Store new note
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
@@ -42,18 +43,21 @@ class NotesController extends Controller
         // auth()->user()->notify(new NoteCreateNotification($note));
 
         return to_route('notes.index')->with('success', 'Note has been created successuly.');
-        
+
     }
 
     // Dsiplay one note info
-    public function show(Note $note){
+    public function show(Note $note)
+    {
         // Policy to prevent users entering notes that not belongs to them
         Gate::authorize('view', $note);
+
         return view('notes.show', ['note' => $note]);
     }
 
     // Edit notes
-    public function update(Request $request, Note $note){
+    public function update(Request $request, Note $note)
+    {
         Gate::authorize('update', $note);
 
         $request->validate([
@@ -72,9 +76,11 @@ class NotesController extends Controller
     }
 
     // Delete notes
-    public function destroy(Note $note){
+    public function destroy(Note $note)
+    {
         Gate::authorize('delete', $note);
         $note->delete();
+
         return to_route('notes.index')->with('success', 'Note has been deleted successuly.');
     }
 }

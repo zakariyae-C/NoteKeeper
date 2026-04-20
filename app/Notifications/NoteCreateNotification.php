@@ -17,7 +17,7 @@ class NoteCreateNotification extends Notification implements ShouldQueue
      */
     public function __construct(public Note $note)
     {
-        // 
+        //
     }
 
     /**
@@ -37,20 +37,21 @@ class NoteCreateNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('New note created')
-            ->greeting('Hello ' . $notifiable->name)
-            ->line('You have created a new note: ' . $this->note->title)
+            ->greeting('Hello '.$notifiable->name)
+            ->line('You have created a new note: '.$this->note->title)
             ->action('View note', route('notes.show', $this->note->id))
             ->line('Thank you for using NoteKeeper!');
     }
 
-    public function toDatabase(object $notifiable) : array
+    public function toDatabase(object $notifiable): array
     {
         return [
             'note_id' => $this->note->id,
             'note_title' => $this->note->title,
-            'message' => 'You created a new note: ' . $this->note->title,
+            'message' => 'You created a new note: '.$this->note->title,
         ];
     }
+
     /**
      * Get the array representation of the notification.
      *
